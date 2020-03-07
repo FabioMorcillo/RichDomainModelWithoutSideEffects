@@ -2,10 +2,8 @@
 
 namespace RichDomainModelWithoutSideEffects.Models
 {
-    public class Customer
+    public class Customer : Entity
     {
-        public Guid Id { get; private set; }
-
         public string Name { get; private set; }
 
         public string Language { get; private set; }
