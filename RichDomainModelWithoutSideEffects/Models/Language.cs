@@ -24,11 +24,12 @@ namespace RichDomainModelWithoutSideEffects.Models
 
         public static Result<Language> Create(string code, string name)
         {
-            if (string.IsNullOrWhiteSpace(code))
-                return Result.Fail<Language>("Must include a code.");
+            var results = Result.Combine(
+                code.ValidateNotEmptyString(nameof(code)),
+                name.ValidateNotEmptyString(nameof(name)));
 
-            if (string.IsNullOrEmpty(name))
-                return Result.Fail<Language>("Must include a name.");
+            if (results.IsFailure)
+                return Result.Fail<Language>(results.Error);
 
             var language = new Language(code, name);
 
