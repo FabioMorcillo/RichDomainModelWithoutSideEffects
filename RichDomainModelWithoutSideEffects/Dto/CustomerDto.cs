@@ -5,7 +5,5 @@
         public string Name { get; set; }
 
         public LanguageDto Language { get; set; }
-
-        public string Teste { get; set; }
     }
 }

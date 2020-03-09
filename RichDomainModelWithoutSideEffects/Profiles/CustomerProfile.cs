@@ -9,9 +9,15 @@ namespace RichDomainModelWithoutSideEffects.Profiles
     {
         public CustomerProfile()
         {
-            CreateMap<CustomerDto, Customer>()
-                .ConstructUsing(c => new Customer(c.Name, c.Language.Name));
+            CreateMap<LanguageDto, Language>()
+                .ConstructUsing(l => Language.Create(l.Code, l.Name));
                 //.IgnoreAllPropertiesWithAnInaccessibleSetter();
+
+            CreateMap<CustomerDto, Customer>()
+                .ConstructUsing((c, ctx) =>
+                    Customer.Create(
+                        c.Name,
+                        ctx.Mapper.Map<Language>(c.Language)));
         }
     }
 }

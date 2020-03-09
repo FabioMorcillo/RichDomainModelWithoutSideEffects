@@ -13,6 +13,7 @@ namespace RichDomainModelWithoutSideEffects
             var mappingConfig = new MapperConfiguration(mc =>
             {
                 mc.AddProfile(new CustomerProfile());
+                mc.AllowNullCollections = true;
             });
 
             var mapper = mappingConfig.CreateMapper();
@@ -22,7 +23,7 @@ namespace RichDomainModelWithoutSideEffects
                 Name = "Fabio Morcillo do Nascimento",
                 Language = new LanguageDto
                 {
-                    Code = "EN",
+                    Code = "en",
                     Name = "English"
                 }
             };

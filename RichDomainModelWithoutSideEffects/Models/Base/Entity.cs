@@ -1,10 +1,11 @@
 ﻿using System;
 
-namespace RichDomainModelWithoutSideEffects.Models
+namespace RichDomainModelWithoutSideEffects.Models.Base
 {
     public abstract class Entity
     {
         public virtual Guid Id { get; protected set; }
+
         protected virtual object Actual => this;
 
         public override bool Equals(object obj)
